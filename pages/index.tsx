@@ -5,14 +5,21 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 import {useRouter} from 'next/router'
+import type { GetStaticProps } from 'next'
 
-export default function Home({allPostsData}) {
+export default function Home({allPostsData}: {
+  allPostsData: {
+    date: string
+    title: string
+    id: string
+  }[]
+}): JSX.Element {
   const router = useRouter()
   const handleClick = (id) => {
     router.push(`/posts/${id}`)
   }
   return (
-    <Layout home>
+    <Layout home={true} >
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -20,7 +27,7 @@ export default function Home({allPostsData}) {
         <p>Hi，i am hill</p>
         <p>
           (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://www.nextjs.cn/learn">our Next.js tutorial</a>.)
+          <a href="https://www.nextjs.cn/docs/getting-started">our Next.js tutorial</a>.)
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -48,7 +55,7 @@ export default function Home({allPostsData}) {
     </Layout>
   )
 }
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () =>{
   const allPostsData = getSortedPostsData()
   return {
     props: {
