@@ -1,8 +1,8 @@
-import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import Layout from 'components/layout'
+import { getAllPostIds, getPostData } from 'lib/posts' // tsconfig配置了baseUrl:'./'，引入自定义模块就可以直接在根目录下开始
 import Head from 'next/head'
-import Date from '../../components/date'
-import utilStyles from '../../styles/utils.module.css'
+import Date from 'components/date'
+import utilStyles from 'styles/utils.module.css'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 
 export default function Post({ postData }: {
